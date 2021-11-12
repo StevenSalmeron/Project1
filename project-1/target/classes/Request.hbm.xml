@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.revature.model.Request" table="requests">
+		<id name="rid" type="int">
+			<column name="rid" />
+			<generator class="identity" />
+		</id>
+		<property name="eid" type="int">
+			<column name="eid" />
+		</property>
+		<property name="amount" type="double">
+			<column name="amount" />
+		</property>
+		<property name="reason" type="java.lang.String">
+			<column name="reason" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="status" />
+		</property>
+	</class>
+</hibernate-mapping>
