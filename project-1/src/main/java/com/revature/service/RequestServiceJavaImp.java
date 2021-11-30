@@ -44,11 +44,11 @@ public class RequestServiceJavaImp implements RequestService {
 	}
 
 	@Override
-	public List<Request> getRequestsByEmployee(int eid) {
+	public List<Request> getRequestsByAccount(int aid) {
 		List<Request> requests = rdao.getAllRequests();
 		List<Request> filteredRequests = new ArrayList<Request>();
 		for (Request r : requests) {
-			if (r.getEid() == eid) {
+			if (r.getAid() == aid) {
 				filteredRequests.add(r);
 			}
 		}

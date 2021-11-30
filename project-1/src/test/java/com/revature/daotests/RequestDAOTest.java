@@ -8,68 +8,62 @@ import com.revature.dao.RequestDAOJavaImp;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class RequestDAOTest
-{
+@Transactional
+class RequestDAOTest {
 
 	private static RequestDAO rdao = RequestDAOJavaImp.getRdao();
-    @Test
-    @Order(1)
-    void createRequest()
-    {
-        Request e = new Request(1,
-                1,
-                2.14,
-                "Reason",
-                "Pending");
 
-        Request result = rdao.createRequest(e);
+	@Test
+	@Order(1)
+	void createRequest() {
+		Request e = new Request(0, 1, 2.14, "Reason", "Pending");
 
-        Assertions.assertNotEquals(0, result.getEid());
-    }
+		Request result = rdao.createRequest(e);
 
-    @Test
-    @Order(2)
-    void getRequestById()
-    {
-        List<Request> RequestList = rdao.getAllRequests();
-        Request Request = RequestList.get(RequestList.size()-1);
-        Request result = rdao.getRequestById(Request.getRid());
+		Assertions.assertNotEquals(0, result.getRid());
+	}
 
-        Assertions.assertEquals(Request.getReason(), result.getReason());
-    }
+	@Test
+	@Order(2)
+	void getRequestById() {
+		List<Request> RequestList = rdao.getAllRequests();
+		Request Request = RequestList.get(RequestList.size() - 1);
+		Request result = rdao.getRequestById(Request.getRid());
 
-    @Test
-    @Order(3)
-    void getAllRequests()
-    {
-        List<Request> result = rdao.getAllRequests();
+		Assertions.assertEquals(Request.getReason(), result.getReason());
+	}
 
-        Assertions.assertNotEquals(0, result.size());
-    }
+	@Test
+	@Order(3)
+	void getAllRequests() {
+		List<Request> result = rdao.getAllRequests();
 
-    @Test
-    @Order(4)
-    void updateRequest()
-    {
-        List<Request> RequestList = rdao.getAllRequests();
-        Request Request = RequestList.get(RequestList.size()-1);
-        Request.setReason("updatedReason");
-        Request result = rdao.updateRequest(Request);
+		Assertions.assertNotEquals(0, result.size());
+	}
 
-        Assertions.assertEquals("updatedReason",result.getReason());
-    }
+	@Test
+	@Order(4)
+	void updateRequest() {
+		List<Request> RequestList = rdao.getAllRequests();
+		Request Request = RequestList.get(RequestList.size() - 1);
+		Request.setReason("updatedReason");
+		Request result = rdao.updateRequest(Request);
 
-    @Test
-    @Order(5)
-    void deleteRequest()
-    {
-        List<Request> RequestList = rdao.getAllRequests();
-        Request Request = RequestList.get(RequestList.size()-1);
+		Assertions.assertEquals("updatedReason", result.getReason());
+	}
 
-        boolean result = rdao.deleteRequest(Request);
+	@Test
+	@Order(5)
+	void deleteRequest() {
+		List<Request> RequestList = rdao.getAllRequests();
+		Request Request = RequestList.get(RequestList.size() - 1);
 
-        Assertions.assertEquals(true, result);
+		boolean result = rdao.deleteRequest(Request);
 
-    }
+		Assertions.assertEquals(true, result);
+
+	}
 }

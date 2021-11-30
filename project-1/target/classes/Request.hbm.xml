@@ -8,8 +8,8 @@
 			<column name="rid" />
 			<generator class="identity" />
 		</id>
-		<property name="eid" type="int">
-			<column name="eid" />
+		<property name="aid" type="int">
+			<column name="aid" />
 		</property>
 		<property name="amount" type="double">
 			<column name="amount" />

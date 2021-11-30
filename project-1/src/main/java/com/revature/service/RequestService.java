@@ -13,7 +13,7 @@ public interface RequestService {
 
 	List<Request> getAllRequests();
 
-	List<Request> getRequestsByEmployee(int eid);
+	List<Request> getRequestsByAccount(int aid);
 
 	List<Request> getRequestsApproved();
 

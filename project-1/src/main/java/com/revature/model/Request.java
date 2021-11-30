@@ -3,7 +3,7 @@ package com.revature.model;
 public class Request {
 
 	private int rid;
-	private int eid;
+	private int aid;
 	private double amount;
 	private String reason;
 	private String status;
@@ -12,10 +12,10 @@ public class Request {
 		super();
 	}
 
-	public Request(int rid, int eid, double amount, String reason, String status) {
+	public Request(int rid, int aid, double amount, String reason, String status) {
 		super();
 		this.rid = rid;
-		this.eid = eid;
+		this.aid = aid;
 		this.amount = amount;
 		this.reason = reason;
 		this.status = status;
@@ -29,12 +29,12 @@ public class Request {
 		this.rid = rid;
 	}
 
-	public int getEid() {
-		return eid;
+	public int getAid() {
+		return aid;
 	}
 
-	public void setEid(int eid) {
-		this.eid = eid;
+	public void setAid(int aid) {
+		this.aid = aid;
 	}
 
 	public double getAmount() {

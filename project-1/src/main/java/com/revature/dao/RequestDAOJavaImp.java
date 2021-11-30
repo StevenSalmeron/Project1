@@ -30,13 +30,18 @@ public class RequestDAOJavaImp implements RequestDAO {
 	public Request createRequest(Request request) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			String sql = "INSERT INTO Requests VALUES (?,?,?,?,?)";
-			PreparedStatement ps = conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, request.getRid());
-			ps.setInt(2, request.getEid());
+			ps.setInt(2, request.getAid());
 			ps.setDouble(3, request.getAmount());
 			ps.setString(4, request.getReason());
 			ps.setString(5, request.getStatus());
 			ps.execute();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int key = rs.getInt(1);
+			request.setRid(key);
 			
 			return request;
 
@@ -58,7 +63,7 @@ public class RequestDAOJavaImp implements RequestDAO {
 
 			Request request = new Request();
 			request.setRid(rs.getInt("rid"));
-			request.setEid(rs.getInt("eid"));
+			request.setAid(rs.getInt("aid"));
 			request.setAmount(rs.getDouble("amount"));
 			request.setReason(rs.getString("reason"));
 			request.setStatus(rs.getString("status"));
@@ -84,7 +89,7 @@ public class RequestDAOJavaImp implements RequestDAO {
 			while (rs.next()) {
 				request = new Request();
 				request.setRid(rs.getInt("rid"));
-				request.setEid(rs.getInt("eid"));
+				request.setAid(rs.getInt("aid"));
 				request.setAmount(rs.getDouble("amount"));
 				request.setReason(rs.getString("reason"));
 				request.setStatus(rs.getString("status"));
@@ -103,10 +108,10 @@ public class RequestDAOJavaImp implements RequestDAO {
 	@Override
 	public Request updateRequest(Request request) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "UPDATE Requests SET eid=?,amount=?,reason=?,status=? WHERE rid = ?";
+			String sql = "UPDATE Requests SET aid=?,amount=?,reason=?,status=? WHERE rid = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
-			ps.setInt(1, request.getEid());
+			ps.setInt(1, request.getAid());
 			ps.setDouble(2, request.getAmount());
 			ps.setString(3, request.getReason());
 			ps.setString(4, request.getStatus());
