@@ -23,5 +23,6 @@ List of features ready and TODOs for future development
 *Users can log in and are correctly sent to an employee or manager page.
 
 To-do list:
+* Employees and Managers can see and manage requests.
 * Employees can add files as part of a reimbursement request.
 * Managers can sort reimbursements and view statistics of reimbursements and employees.
