@@ -16,6 +16,8 @@ public class AccountController {
 		javalin = app;
 		app.post("/login", AccountController::login);
 	}
+	
+	
 
 	public static void login(Context ctx) {
 
@@ -37,5 +39,6 @@ public class AccountController {
 			}
 		}
 	}
+
 
 }
